@@ -372,8 +372,11 @@ class ObjectInspector extends Component {
       onClick: e => {
         e.stopPropagation();
 
-        // If the user selected text, bail out.
-        if (Utils.selection.documentHasSelection()) {
+        // If the user selected text, bail out if it's not the arrow that was clicked.
+        if (
+          Utils.selection.documentHasSelection()
+          && !(e.target && e.target.matches && e.target.matches("img.arrow"))
+        ) {
           return;
         }
 
